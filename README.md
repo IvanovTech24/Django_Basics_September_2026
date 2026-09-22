@@ -15,8 +15,8 @@ The **Django Basics** course provides hands-on experience with web development u
 
 - [x] **01. Internet, HTTP and Git**
 - [x] **02. Django Introduction** & **Exercise**
-- [x] **03. URLs and Views** & **Exercise**
-- [x] **04. Templates** & **Exercise**
+- [ ] **03. URLs and Views** & **Exercise**
+- [ ] **04. Templates** & **Exercise**
 - [ ] **05. Workshop: Part 1**
 - [ ] **06. Project Documentation**
 - [ ] **07. Forms Basics** & **Exercise**
