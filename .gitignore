@@ -12,7 +12,7 @@ __pycache__/
 db.sqlite3
 
 # PyCharm configuration
-../.idea/
+.idea/
 
 # Environment variables / Local Settings
 .env
