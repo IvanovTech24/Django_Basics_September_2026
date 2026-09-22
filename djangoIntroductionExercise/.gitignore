@@ -1,0 +1,22 @@
+# Virtual Environment
+.venv/
+venv/
+ENV/
+
+# Python compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Database
+db.sqlite3
+
+# PyCharm configuration
+../.idea/
+
+# Environment variables / Local Settings
+.env
+local_settings.py
+
+# Media files (user uploads)
+media/
