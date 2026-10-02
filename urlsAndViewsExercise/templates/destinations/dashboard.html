@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Recent Destinations:</h1>
+    {% for destination in recent_destinations %}
+        <li>{{ destination.name }} - {{ destination.country }}</li>
+    {% empty %}
+        <h2>No destinations added.</h2>
+    {% endfor %}
+
+    <h1>Recent Reviews:</h1>
+    {% for review in latest_reviews %}
+        <li>{{ review.rating }} - {{ review.author }}</li>
+    {% empty %}
+        <h2>No reviews</h2>
+    {% endfor %}
+</body>
+</html>

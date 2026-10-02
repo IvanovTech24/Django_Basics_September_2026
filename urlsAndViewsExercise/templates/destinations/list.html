@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Destinations List</title>
+</head>
+<body>
+    <h1>All Destinations:</h1>
+    {% for destination in destinations%}
+        <h2>{{ destination.name }} - {{ destination.country }}</h2>
+        <li>{{ destination.description }}</li>
+    {% empty %}
+        <h2>No destinations added.</h2>
+    {% endfor %}
+</body>
+</html>
