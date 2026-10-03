@@ -1,5 +1,5 @@
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from destinations.models import Destination
 from reviews.models import Review
 
@@ -30,3 +30,17 @@ def destination_detail(request: HttpRequest, slug: str) -> HttpResponse:
     }
 
     return render(request, 'destinations/detail.html', context)
+
+def redirect_softuni(request):
+    return redirect('https://softuni.bg/')
+
+
+
+
+
+
+
+
+
+
+
