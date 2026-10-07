@@ -1,0 +1,25 @@
+ <!DOCTYPE html>
+<html lang="en">
+<!-- Starts Head Section -->
+    {% include 'shared/header.html' %}
+<!-- End Head Section -->
+
+<body>
+
+<!-- Starts Header Section with Navigation Bar -->
+    {% include 'shared/nav.html' %}
+<!-- End Header Section with Navigation Bar -->
+
+<!-- Starts Main Section -->
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+<!-- End Main Section -->
+
+<!-- Start Footer Section -->
+    {% include 'shared/footer.html' %}
+<!-- End Footer Section -->
+
+</body>
+</html>
