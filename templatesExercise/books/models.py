@@ -52,3 +52,18 @@ class Book(models.Model):
         super().save(*args, **kwargs)
 
 
+class Tag(models.Model):
+    name = models.CharField(
+        max_length=50,
+    )
+    books = models.ManyToManyField(
+        to=Book,
+    )
+
+    def __repr__(self) -> str:
+        return self.name
+
+    def __str__(self) -> str:
+        return self.name
+
+

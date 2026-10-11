@@ -1,6 +1,7 @@
 from django.db.models import QuerySet, Avg
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render, get_list_or_404, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from books.forms import BookCreateForm, BookEditForm, BookDeleteForm, SearchForm
 from books.models import Book
 
 
@@ -24,6 +25,10 @@ def landing_page(request: HttpRequest) -> HttpResponse:
 
 def books_list(request: HttpRequest) -> HttpResponse:
     books = _with_rating(Book.objects.all())
+    search_form = SearchForm(request.GET or None)
+
+    if request.GET and search_form.is_valid():
+        books = books.filter(title__icontains=search_form.cleaned_data['query'])
 
     context = {
         'books': books,
@@ -42,3 +47,54 @@ def book_detail(request: HttpRequest, slug: str) -> HttpResponse:
     }
 
     return render(request, 'books/detail.html', context)
+
+def book_create(request: HttpRequest) -> HttpResponse:
+    form = BookCreateForm(request.POST or None)
+
+    if form.is_valid():
+        # in non-model forms
+        # Book(
+        #     title=form.cleaned_data['title'],
+        # )
+        # book.save()
+        form.save() # only on model forms
+        return redirect('books:landing-page')
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'books/create.html', context)
+
+def book_edit(request: HttpRequest, slug: str) -> HttpResponse:
+    book = get_object_or_404(Book, slug=slug)
+    form = BookEditForm(request.POST or None, instance=book)
+
+    if form.is_valid():
+        # in non-model forms
+        # Book(
+        #     title=form.cleaned_data['title'],
+        # )
+        # book.save()
+        form.save() # only on model forms
+        return redirect('books:landing-page')
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'books/edit.html', context)
+
+def book_delete(request: HttpRequest, slug: str) -> HttpResponse:
+    book = get_object_or_404(Book, slug=slug)
+    form = BookDeleteForm(instance=book)
+
+    if request.method == "POST":
+        book.delete()
+        return redirect('books:landing-page')
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'books/delete.html', context)

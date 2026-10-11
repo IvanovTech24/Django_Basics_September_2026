@@ -8,8 +8,16 @@
 <div class="container">
     <h1 class="mb-4">Books</h1>
     <div class="row">
+        <form>
+            <div class="input-group">
+                <input name="query" class="form-control" placeholder="Search for books" value="{{ request.GET.query }}"/>
+                <div class="input-group-append ms-2">
+                    <button class="btn btn-outline-secondary">Search</button>
+                </div>
+            </div>
+        </form>
         {% for book in books %}
-        <div class="col-md-4 mb-4">
+        <div class="col-md-4 mb- mt-4">
             <div class="card">
                 <img src="{{ book.image_url }}" class="card-img-top" alt="{{ book.title }}">
                 <div class="card-body">
