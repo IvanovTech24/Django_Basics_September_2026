@@ -19,7 +19,15 @@
         {% for book in books %}
         <div class="col-md-4 mb- mt-4">
             <div class="card">
-                <img src="{{ book.image_url }}" class="card-img-top" alt="{{ book.title }}">
+            {% if book.cover_image %}
+            <div class="col-md-4">
+                <img src="{{ book.cover_image.url }}" class="img-fluid rounded shadow-sm" alt="{{ book.title }} cover">
+            </div>
+            {% else %}
+            <div class="col-md-4">
+                <img src="https://blocks.astratic.com/img/general-img-landscape.png" class="img-fluid rounded shadow-sm" alt="{{ book.title }} cover">
+            </div>
+            {% endif %}
                 <div class="card-body">
                     <h5 class="card-title">{{ book.title|capfirst }}</h5>
                     <p class="card-text"><strong>Genre:</strong> {{ book.genre }}</p>

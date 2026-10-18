@@ -8,9 +8,15 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
-            <img src="{{ book.image_url }}" class="img-fluid" alt="{{ book.title }}">
-        </div>
+        {% if book.cover_image %}
+            <div class="col-md-4">
+                <img src="{{ book.cover_image.url }}" class="img-fluid rounded shadow-sm" alt="{{ book.title }} cover">
+            </div>
+            {% else %}
+            <div class="col-md-4">
+                <img src="https://blocks.astratic.com/img/general-img-landscape.png" class="img-fluid rounded shadow-sm" alt="{{ book.title }} cover">
+            </div>
+            {% endif %}
         <div class="col-md-8">
             <h1>{{ book.title }}</h1>
             <p><strong>Genre:</strong> {{ book.genre }}</p>
