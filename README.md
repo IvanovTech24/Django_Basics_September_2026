@@ -18,9 +18,9 @@ The **Django Basics** course provides hands-on experience with web development u
 - [X] **03. URLs and Views** & **Exercise**
 - [X] **04. Templates** & **Exercise**
 - [X] **05. Workshop: Part 1**
-- [ ] **06. Project Documentation**
-- [ ] **07. Forms Basics** & **Exercise**
-- [ ] **08. Forms Advanced** & **Exercise**
+- [X] **06. Project Documentation**
+- [X] **07. Forms Basics** & **Exercise**
+- [X] **08. Forms Advanced** & **Exercise**
 - [ ] **09. Workshop: Part 2**
 - [ ] **10. Class-Based Views Basics** & **Exercise**
 - [ ] **11. Class-Based Views Advanced** & **Exercise**
