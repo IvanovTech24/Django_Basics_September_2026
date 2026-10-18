@@ -19,7 +19,6 @@ db.sqlite3
 local_settings.py
 
 # Media files (user uploads)
-media/
 .aider*
 
 # Codex AI tool - local config
