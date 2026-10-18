@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.text import slugify
 
+from books.validators import BadLanguageValidator
+
 
 class Book(models.Model):
     class GenreChoices(models.TextChoices):
@@ -29,9 +31,17 @@ class Book(models.Model):
     )
     publishing_date = models.DateField()
 
-    description = models.TextField()
+    description = models.TextField(
+        validators=[
+            BadLanguageValidator("The provided description contains bad language!")
+        ]
+    )
 
-    image_url = models.URLField()
+    cover_image = models.ImageField(
+        upload_to='covers/',
+        null=True,
+        blank=True,
+    )
 
     slug = models.SlugField(
         max_length=100,
