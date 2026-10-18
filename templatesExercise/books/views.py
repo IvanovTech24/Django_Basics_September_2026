@@ -1,4 +1,6 @@
 from django.db.models import QuerySet, Avg
+from django import forms
+from django.forms.models import modelform_factory
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from books.forms import BookCreateForm, BookEditForm, BookDeleteForm, SearchForm
@@ -49,7 +51,28 @@ def book_detail(request: HttpRequest, slug: str) -> HttpResponse:
     return render(request, 'books/detail.html', context)
 
 def book_create(request: HttpRequest) -> HttpResponse:
-    form = BookCreateForm(request.POST or None)
+
+    if request.user.is_staff:
+        BookCreateAdminForm = modelform_factory(
+            Book,
+            fields='__all__',
+            widgets={
+                'title': forms.TextInput(
+                    attrs={
+                        'class': 'form-control',
+                        'placeholder': 'Insert title here'
+                    }
+                )
+            },
+            error_messages={
+                'isbn': {
+                    'unique': 'ISBN should be unique, we already have a book with this isbn',
+                }
+            }
+        )
+        form = BookCreateAdminForm(request.POST or None, request.FILES or None)
+    else:
+        form = BookCreateForm(request.POST or None, request.FILES or None)
 
     if form.is_valid():
         # in non-model forms
@@ -68,7 +91,7 @@ def book_create(request: HttpRequest) -> HttpResponse:
 
 def book_edit(request: HttpRequest, slug: str) -> HttpResponse:
     book = get_object_or_404(Book, slug=slug)
-    form = BookEditForm(request.POST or None, instance=book)
+    form = BookEditForm(request.POST or None, request.FILES or None, instance=book)
 
     if form.is_valid():
         # in non-model forms
