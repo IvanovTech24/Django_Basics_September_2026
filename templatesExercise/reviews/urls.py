@@ -10,5 +10,6 @@ urlpatterns = [
         path('', views.review_details, name='details'),
         path('edit/', views.review_edit, name='edit'),
         path('delete/', views.review_delete, name='delete'),
-    ]))
+    ])),
+    path('bulk_edit/<slug:book_slug>/', views.review_bulk_edit, name='bulk-edit')
 ]
