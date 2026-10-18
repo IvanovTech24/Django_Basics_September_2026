@@ -1,10 +1,8 @@
-# with func
-import decimal
-
 from django.core.exceptions import ValidationError
 from django.utils.deconstruct import deconstructible
 
 
+# with func
 def validate_bad_language(value: str) -> None:
     bab_language = ['bad_word1', 'bad_word2']
 
